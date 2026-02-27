@@ -3,6 +3,7 @@ Bare metal practice on STM nucleo
 Based on [this example](https://kleinembedded.com/stm32-without-cubeide-part-1-the-bare-necessities/)  
 Compiling using [`gcc-arm-none-eabi`](https://learn.arm.com/install-guides/gcc/arm-gnu/)  
 Loading on board [using `openOCD`](https://github.com/openocd-org/openocd)   
+[Learning about linker scripts](https://home.cs.colorado.edu/~main/cs1300/doc/gnu/ld_3.html)
 
 ## Hardware used  
 Board: STM Nucleo-L476RG  
