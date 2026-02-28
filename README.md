@@ -4,6 +4,7 @@ Based on [this example](https://kleinembedded.com/stm32-without-cubeide-part-1-t
 Compiling using [`gcc-arm-none-eabi`](https://learn.arm.com/install-guides/gcc/arm-gnu/)  
 Loading on board [using `openOCD`](https://github.com/openocd-org/openocd)   
 [Learning about linker scripts](https://home.cs.colorado.edu/~main/cs1300/doc/gnu/ld_3.html)
+[More about linker scripts](https://sourceware.org/binutils/docs/ld/Scripts.html)
 
 ## Hardware used  
 Board: STM Nucleo-L476RG  
