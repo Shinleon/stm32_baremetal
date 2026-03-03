@@ -7,9 +7,9 @@
  */
 #include <stdint.h>
 
-#define SRAM_START (0x20000000U)
+#define SRAM_START (0x20000000UL)
 #define SRAM_SIZE  (96U * 1024U)
-#define SRAM_SEND  (SRAM_START + SRAM_SIZE)
+#define SRAM_END  (SRAM_START + SRAM_SIZE)
 #define STACK_POINTER_INIT_ADDRESS (SRAM_END)
 #define ISR_VECTOR_SIZE_WORDS (98)
 
@@ -18,12 +18,12 @@ void default_handler(void);
 
 // Cortex-M system exceptions
 void nmi_handler(void) __attribute__((weak, alias("default_handler")));
-void hard_fault_handle(void) __attribute__((weak, alias("default_handler")));
-void memMngr_fault_handle(void) __attribute__((weak, alias("default_handler")));
-void bus_fault_handle(void) __attribute__((weak, alias("default_handler")));
-void usage_fault_handle(void) __attribute__((weak, alias("default_handler")));
-void svcall_handle(void) __attribute__((weak, alias("default_handler")));
-void debug_monitor_handle(void) __attribute__((weak, alias("default_handler")));
+void hard_fault_handler(void) __attribute__((weak, alias("default_handler")));
+void memMngr_fault_handler(void) __attribute__((weak, alias("default_handler")));
+void bus_fault_handler(void) __attribute__((weak, alias("default_handler")));
+void usage_fault_handler(void) __attribute__((weak, alias("default_handler")));
+void svcall_handler(void) __attribute__((weak, alias("default_handler")));
+void debug_monitor_handler(void) __attribute__((weak, alias("default_handler")));
 void pendsv_handler(void) __attribute__((weak, alias("default_handler")));
 void systick_handler(void) __attribute__((weak, alias("default_handler")));
 
@@ -134,98 +134,98 @@ uint32_t isr_vector[ISR_VECTOR_SIZE_WORDS] __attribute((section(".isr_vector")))
 
   // STM32L47x interrupt handlers below VV
   /* watchdog */
-  (uint32_t)&wwdg_handler(void),
-  (uint32_t)&pvd_handler(void),
-  (uint32_t)&exti19_tamp_stamp_handler(void),
-  (uint32_t)&exti20_rtc_wkup_handler(void),
-  (uint32_t)&flash_handler(void),
-  (uint32_t)&rcc_handler(void),
-  (uint32_t)&exti0_handler(void),
-  (uint32_t)&exti1_handler(void),
-  (uint32_t)&exti2_handler(void),
-  (uint32_t)&exti3_handler(void),
-  (uint32_t)&exti4_handler(void),
-  (uint32_t)&dma1_ch1_handler(void),
-  (uint32_t)&dma1_ch2_handler(void),
-  (uint32_t)&dma1_ch3_handler(void),
-  (uint32_t)&dma1_ch4_handler(void),
-  (uint32_t)&dma1_ch5_handler(void),
-  (uint32_t)&dma1_ch6_handler(void),
-  (uint32_t)&dma1_ch7_handler(void),
-  (uint32_t)&adc_handler(void),
-  (uint32_t)&can1_TX_handler(void),
-  (uint32_t)&can1_RX0_handler(void),
-  (uint32_t)&can1_RX1_handler(void),
-  (uint32_t)&can1_SCE_handler(void),
-  (uint32_t)&exti9_5_handler(void),
-  (uint32_t)&tim1_brk_tim15_handler(void),
-  (uint32_t)&tim1_up_tim16_handler(void),
-  (uint32_t)&tim1_trg_com_tim17_handler(void),
-  (uint32_t)&tim1_cc_handler(void),
-  (uint32_t)&tim2_handler(void),
-  (uint32_t)&tim3_handler(void),
-  (uint32_t)&tim4_handler(void),
-  (uint32_t)&i2c1_ev_handler(void),
-  (uint32_t)&i2c1_er_handler(void),
-  (uint32_t)&i2c2_ev_handler(void),
-  (uint32_t)&i2c2_er_handler(void),
-  (uint32_t)&spi1_handler(void),
-  (uint32_t)&spi2_handler(void),
-  (uint32_t)&usart1_handler(void),
-  (uint32_t)&usart2_handler(void),
-  (uint32_t)&exti15_10_handler(void),
-  (uint32_t)&exti18_rtc_alarm_handler(void),
-  (uint32_t)&dfsdm1_flt3_handler(void),
-  (uint32_t)&tim8_brk_handler(void),
-  (uint32_t)&tim8_up_handler(void),
-  (uint32_t)&tim8_trg_com_handler(void),
-  (uint32_t)&tim8_cc_handler(void) ,// tim 8 capture/compare
-  (uint32_t)&adc3_handler(void),
-  (uint32_t)&fmc_handler(void),
-  (uint32_t)&sdmmc1_handler(void),
-  (uint32_t)&tim5_handler(void),
-  (uint32_t)&spi3_handler(void),
-  (uint32_t)&uart4_handler(void),
-  (uint32_t)&uart5_handler(void),
-  (uint32_t)&tim6_dacunder_handler(void),
-  (uint32_t)&tim7_handler(void),
-  (uint32_t)&dma2_ch1_handler(void),
-  (uint32_t)&dma2_ch2_handler(void),
-  (uint32_t)&dma2_ch3_handler(void),
-  (uint32_t)&dma2_ch4_handler(void),
-  (uint32_t)&dma2_ch5_handler(void),
-  (uint32_t)&dfsdm1_flt0_handler(void),
-  (uint32_t)&dfsdm1_flt1_handler(void),
-  (uint32_t)&dfsdm1_flt2_handler(void),
-  (uint32_t)&comp_handler(void),
-  (uint32_t)&lptim1_handler(void),
-  (uint32_t)&lptim2_handler(void),
-  (uint32_t)&otg_fs_handler(void), // L4x5/L4x6 only
-  (uint32_t)&dma2_ch6_handler(void),
-  (uint32_t)&dma2_ch7_handler(void),
-  (uint32_t)&lpuart1_handler(void),
-  (uint32_t)&quadspi_handler(void),
-  (uint32_t)&i2c3_ev_handler(void),
-  (uint32_t)&i2c3_er_handler(void),
-  (uint32_t)&sai1_handler(void),
-  (uint32_t)&sai2_handler(void),
-  (uint32_t)&swpmi1_handler(void),
-  (uint32_t)&tsc_handler(void),
-  (uint32_t)&lcd_handler(void), // L4x6 only
-  (uint32_t)&aes_handler(void), //L486/L4A6 only
-  (uint32_t)&rng_and_hash_handler(void), // L4Ax only
-  (uint32_t)&fpu_handler(void),
-  (uint32_t)&hash_and_crs_handler(void) // L4Ax only
+  (uint32_t)&wwdg_handler,
+  (uint32_t)&pvd_handler,
+  (uint32_t)&exti19_tamp_stamp_handler,
+  (uint32_t)&exti20_rtc_wkup_handler,
+  (uint32_t)&flash_handler,
+  (uint32_t)&rcc_handler,
+  (uint32_t)&exti0_handler,
+  (uint32_t)&exti1_handler,
+  (uint32_t)&exti2_handler,
+  (uint32_t)&exti3_handler,
+  (uint32_t)&exti4_handler,
+  (uint32_t)&dma1_ch1_handler,
+  (uint32_t)&dma1_ch2_handler,
+  (uint32_t)&dma1_ch3_handler,
+  (uint32_t)&dma1_ch4_handler,
+  (uint32_t)&dma1_ch5_handler,
+  (uint32_t)&dma1_ch6_handler,
+  (uint32_t)&dma1_ch7_handler,
+  (uint32_t)&adc_handler,
+  (uint32_t)&can1_TX_handler,
+  (uint32_t)&can1_RX0_handler,
+  (uint32_t)&can1_RX1_handler,
+  (uint32_t)&can1_SCE_handler,
+  (uint32_t)&exti9_5_handler,
+  (uint32_t)&tim1_brk_tim15_handler,
+  (uint32_t)&tim1_up_tim16_handler,
+  (uint32_t)&tim1_trg_com_tim17_handler,
+  (uint32_t)&tim1_cc_handler,
+  (uint32_t)&tim2_handler,
+  (uint32_t)&tim3_handler,
+  (uint32_t)&tim4_handler,
+  (uint32_t)&i2c1_ev_handler,
+  (uint32_t)&i2c1_er_handler,
+  (uint32_t)&i2c2_ev_handler,
+  (uint32_t)&i2c2_er_handler,
+  (uint32_t)&spi1_handler,
+  (uint32_t)&spi2_handler,
+  (uint32_t)&usart1_handler,
+  (uint32_t)&usart2_handler,
+  (uint32_t)&exti15_10_handler,
+  (uint32_t)&exti18_rtc_alarm_handler,
+  (uint32_t)&dfsdm1_flt3_handler,
+  (uint32_t)&tim8_brk_handler,
+  (uint32_t)&tim8_up_handler,
+  (uint32_t)&tim8_trg_com_handler,
+  (uint32_t)&tim8_cc_handler ,// tim 8 capture/compare
+  (uint32_t)&adc3_handler,
+  (uint32_t)&fmc_handler,
+  (uint32_t)&sdmmc1_handler,
+  (uint32_t)&tim5_handler,
+  (uint32_t)&spi3_handler,
+  (uint32_t)&uart4_handler,
+  (uint32_t)&uart5_handler,
+  (uint32_t)&tim6_dacunder_handler,
+  (uint32_t)&tim7_handler,
+  (uint32_t)&dma2_ch1_handler,
+  (uint32_t)&dma2_ch2_handler,
+  (uint32_t)&dma2_ch3_handler,
+  (uint32_t)&dma2_ch4_handler,
+  (uint32_t)&dma2_ch5_handler,
+  (uint32_t)&dfsdm1_flt0_handler,
+  (uint32_t)&dfsdm1_flt1_handler,
+  (uint32_t)&dfsdm1_flt2_handler,
+  (uint32_t)&comp_handler,
+  (uint32_t)&lptim1_handler,
+  (uint32_t)&lptim2_handler,
+  (uint32_t)&otg_fs_handler, // L4x5/L4x6 only
+  (uint32_t)&dma2_ch6_handler,
+  (uint32_t)&dma2_ch7_handler,
+  (uint32_t)&lpuart1_handler,
+  (uint32_t)&quadspi_handler,
+  (uint32_t)&i2c3_ev_handler,
+  (uint32_t)&i2c3_er_handler,
+  (uint32_t)&sai1_handler,
+  (uint32_t)&sai2_handler,
+  (uint32_t)&swpmi1_handler,
+  (uint32_t)&tsc_handler,
+  (uint32_t)&lcd_handler, // L4x6 only
+  (uint32_t)&aes_handler, //L486/L4A6 only
+  (uint32_t)&rng_and_hash_handler, // L4Ax only
+  (uint32_t)&fpu_handler,
+  (uint32_t)&hash_and_crs_handler // L4Ax only
 };
 
-extern uint32_t _etext, _sdata, _edata, _sbss, _ebss, _sidata;
+extern uint32_t _etext, _sdata, _edata, _sbss, _ebss;
 void main(void);
 
 void reset_handler(void)
 {
   // Copy .data from FLASH to SRAM
   uint32_t data_size = (uint32_t)&_edata - (uint32_t)&_sdata;
-  uint8_t *flash_data = (uint8_t*) &_sidata; // Data load address (in flash)
+  uint8_t *flash_data = (uint8_t*) &_etext; // Data load address (in flash)
   uint8_t *sram_data = (uint8_t*) &_sdata; // Data virtual address (in sram)
   
   for (uint32_t i = 0; i < data_size; i++)
