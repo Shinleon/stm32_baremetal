@@ -1,0 +1,3 @@
+[submodule "vendor/STM32L4"]
+	path = vendor/STM32L4
+	url = git@github.com:STMicroelectronics/cmsis-device-l4.git
