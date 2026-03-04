@@ -4,11 +4,11 @@ CC=arm-none-eabi-gcc
 CFLAGS=-mcpu=cortex-m4 -mthumb -nostdlib
 CPPFLAGS=-DSTM32L476xx \
 			-Ivendor/CMSIS/CMSIS/Core/Include \
-			-Ivendor/CMSIS/Device/ST/STM32L4/Include
+			-Ivendor/STM32L4/Include
 
 LINKER_FILE=linker_script.ld
 LDFLAGS=-T $(LINKER_FILE)
-VENDOR_SRC=vendor/CMSIS/Device/ST/STM32L4/Source/Templates/system_stm32l4xx.c
+VENDOR_SRC=vendor/STM32L4/Source/Templates/system_stm32l4xx.c
 
 EXECUTABLE=blink.elf
 
@@ -28,7 +28,7 @@ main.o: main.c
 startup.o: startup.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) $< -c
 
-system_stm32l4xx.o: vendor/CMSIS/Device/ST/STM32L4/Source/Templates/system_stm32l4xx.c
+system_stm32l4xx.o: vendor/STM32L4/Source/Templates/system_stm32l4xx.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) $< -c
 
 flash: blink.elf
