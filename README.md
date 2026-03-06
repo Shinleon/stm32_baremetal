@@ -11,7 +11,7 @@ cmsis = Cortex Microcontroller Software Interface Standard
 
 ## Hardware used  
 Board: STM Nucleo-L476RG  
-Microcontroller: STM32L476RGTx
+Microcontroller: STM32L476RGTx (LQFP64)
 
 ## Project Outline  
 ### Memory outline
