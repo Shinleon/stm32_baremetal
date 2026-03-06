@@ -3,6 +3,7 @@ Bare metal practice on STM nucleo
 Based on [this example](https://kleinembedded.com/stm32-without-cubeide-part-1-the-bare-necessities/)  
 Compiling using [`gcc-arm-none-eabi`](https://learn.arm.com/install-guides/gcc/arm-gnu/)  
 Loading on board [using `openOCD`](https://github.com/openocd-org/openocd)   
+Cortex m4 [core documentation](https://documentation-service.arm.com/static/5fce431be167456a35b36ade)
 [Learning about linker scripts](https://home.cs.colorado.edu/~main/cs1300/doc/gnu/ld_3.html)  
 [More about linker scripts](https://sourceware.org/binutils/docs/ld/Scripts.html)  
 cmsis .s file [here](https://github.com/STMicroelectronics/cmsis-device-l4/tree/master)
